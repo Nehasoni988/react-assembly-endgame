@@ -3,8 +3,8 @@ export const Header = () => {
     <div>
       <h2 className="app-header">Bollywood Endgame</h2>
       <div>
-        Guess the Bollywood movie — every wrong letter sends an actor or
-        director off the screen
+        Guess the Bollywood movie — can you find it before your attempts run
+        out?
       </div>
     </div>
   );

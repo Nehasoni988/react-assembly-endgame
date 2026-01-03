@@ -1,131 +1,185 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #282c34;
+  --primary-color: cyan;
+  --alert-error: tomato;
+  --alert-warning: #7a5ea7;
+  --alert-success: green;
+  --key-bg: #f4bb44;
+  --btn-bg: rgb(47, 204, 228);
+  --text-color: white;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/* Flex Utilities */
 .flex-box {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 0.3rem;
   justify-content: center;
   align-items: center;
 }
 
+/* App Container */
 .App {
-  height: 100vh;
-  background-color: #282c34;
-  color: white;
-}
-
-.app-header {
-  color: cyan;
-}
-
-.game_container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
-.alert_container {
-  margin-top: 40px;
-  min-height: 50px;
-  border-radius: 3px;
-  visibility: hidden;
-}
-
-.language_container {
-  margin-top: 40px;
-}
-
-.language_badge {
-  padding: 10px;
-  border-radius: 8px;
-  min-width: 50px;
-  position: relative;
-}
-
-.type_container {
-  margin-top: 40px;
-}
-
-.box-style {
-  min-width: 40px;
-  min-height: 40px;
+/* Headers */
+.app-header {
+  color: var(--primary-color);
   font-weight: bold;
-  font-size: 18px;
+}
+
+/* Containers */
+.game_container,
+.language_container,
+.type_container,
+.keyboard_container {
+  margin-top: 2.5rem;
+}
+
+.keys-container {
+  max-width: 30rem;
+  margin: auto;
+}
+
+/* Boxes */
+.box-style {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .blankBox {
   background-color: gray;
   border: none;
-  border-bottom: 1px solid white;
-  border-radius: 2px;
-  color: white;
+  border-bottom: 1px solid var(--text-color);
+  border-radius: 0.2rem;
+  color: var(--text-color);
 }
 
+/* Keyboard Keys */
 .keyboard_key {
-  border: 1px solid white;
+  border: 1px solid var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f4bb44;
-  border-radius: 5px;
+  background-color: var(--key-bg);
+  border-radius: 0.3rem;
   color: black;
   cursor: pointer;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  font-weight: bold;
+  transition: transform 0.1s ease;
 }
 
-.keyboard_container {
-  margin-top: 40px;
+.keyboard_key:hover {
+  transform: scale(1.1);
 }
 
-.keys-container {
-  max-width: 500px;
-  margin: auto;
+/* Language Badge */
+.language_badge {
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  min-width: 3rem;
+  position: relative;
+  display: inline-block;
+  margin: 0.2rem;
+  background-color: #444;
+  color: var(--text-color);
 }
 
-/* type 0 */
+/* Alerts */
+.alert_container {
+  margin-top: 2.5rem;
+  min-height: 3rem;
+  border-radius: 0.3rem;
+  visibility: hidden;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+}
+
 .error_alert {
-  background-color: tomato;
-  visibility: visible;
-}
-/* type 1 */
-.warning_alert {
-  background-color: #7a5ea7;
-  visibility: visible;
-}
-/* type 2 */
-.success_alert {
-  background-color: green;
+  background-color: var(--alert-error);
   visibility: visible;
 }
 
+.warning_alert {
+  background-color: var(--alert-warning);
+  visibility: visible;
+}
+
+.success_alert {
+  background-color: var(--alert-success);
+  visibility: visible;
+}
+
+/* Overlay Text */
 .overlay-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #000;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.3rem;
   pointer-events: none;
   display: none;
 }
 
 .eliminate .actual-text {
   opacity: 0.3;
-  pointer-events: none; /* prevents clicks */
+  pointer-events: none;
 }
 
 .eliminate .overlay-text {
   display: block;
 }
 
+/* Buttons */
 .new-game-btn {
   border: none;
-  background-color: rgb(47, 204, 228);
-  min-height: 30px;
-  padding: 10px 30px;
+  background-color: var(--btn-bg);
+  min-height: 2rem;
+  padding: 0.6rem 2rem;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.25rem;
   cursor: pointer;
+  border-radius: 0.3rem;
+  transition: background 0.2s ease;
 }
 
+.new-game-btn:hover {
+  background-color: #2bb0c8;
+}
+
+/* Text Utilities */
 .font-bold {
   font-weight: bold;
 }
@@ -135,11 +189,11 @@
 }
 
 .success_key {
-  background-color: green;
+  background-color: var(--alert-success);
 }
 
 .wrong_key {
-  background-color: red;
+  background-color: var(--alert-error);
 }
 
 .space-box {
@@ -147,13 +201,39 @@
   border: none;
 }
 
-.press-key {
-  margin-top: 40px;
+.press-key,
+.hint {
+  margin-top: 2.5rem;
   font-weight: bold;
   font-style: italic;
 }
 
-.hint {
-  font-weight: bold;
-  font-style: italic;
+/* Responsive */
+@media (max-width: 768px) {
+  .box-style,
+  .keyboard_key {
+    min-width: 2rem;
+    min-height: 2rem;
+    font-size: 1rem;
+  }
+
+  .new-game-btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .language_badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .keys-container {
+    max-width: 90%;
+  }
+
+  .app-header {
+    font-size: 1.5rem;
+  }
 }

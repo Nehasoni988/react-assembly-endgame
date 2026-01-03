@@ -43,7 +43,7 @@ function App() {
   });
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.PLAYING);
   const [attempts, setAttempts] = useState(initialState.attempts);
-  const MAX_ATTEMPTS = 5;
+  const MAX_ATTEMPTS = 3;
 
   /**
    * Hooks
