@@ -131,7 +131,7 @@
 }
 
 .missing-key {
-  color: #EC5E4A;
+  color: #ec5e4a;
 }
 
 .success_key {
@@ -145,4 +145,15 @@
 .space-box {
   background-color: transparent;
   border: none;
+}
+
+.press-key {
+  margin-top: 40px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.hint {
+  font-weight: bold;
+  font-style: italic;
 }

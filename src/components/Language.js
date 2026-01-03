@@ -1,11 +1,11 @@
-export const Language = ({ language, color }) => {
+import { getHint } from "../utils/helper";
+
+export const Language = ({ correctWord }) => {
+  const hint = getHint(correctWord);
+
   return (
-    <div
-      className={`language_badge ${language.eliminate ? "eliminate" : ""}`}
-      style={{ background: color }}
-    >
-      <div className="actual-text">{language.title}</div>
-      <div className="overlay-text">👻</div>
+    <div className="hint">
+      <span style={{ fontWeight: "bold", fontSize: '20px' }}>Hint</span>: {hint}
     </div>
   );
 };

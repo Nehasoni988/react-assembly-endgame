@@ -43,7 +43,7 @@ function App() {
   });
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.PLAYING);
   const [attempts, setAttempts] = useState(initialState.attempts);
-  const MAX_ATTEMPTS = correctWord.replaceAll(" ", "").length;
+  const MAX_ATTEMPTS = 5;
 
   /**
    * Hooks
@@ -152,13 +152,7 @@ function App() {
 
         {/* Labguages */}
         <div className="language_container flex-box">
-          {languages.map((item) => (
-            <Language
-              key={item.id}
-              language={item}
-              color={item.background}
-            ></Language>
-          ))}
+          <Language correctWord={correctWord}></Language>
         </div>
 
         {/* Characters */}
@@ -194,6 +188,9 @@ function App() {
           >
             New Game
           </button>
+        )}
+        {gameStatus === GAME_STATUS.PLAYING && (
+          <div className="press-key">Press any key</div>
         )}
       </div>
     </div>
