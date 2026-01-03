@@ -56,7 +56,7 @@ function App() {
         showNotification(
           ALERT_TYPE.ERROR,
           `Game Over!`,
-          "You lose! Better start learning Assembly 😭"
+          "You lose! Better luck next time! 😭"
         );
         setGameStatus(GAME_STATUS.LOST);
       }
@@ -87,7 +87,7 @@ function App() {
           showNotification(
             ALERT_TYPE.WARNING,
             "Oh no! 😥",
-            `Farewell ${item.title} 👋`
+            `But you can do it 👋`
           );
           return { ...item, eliminate: true };
         })
@@ -116,14 +116,8 @@ function App() {
 
   function handleGuesseWordUpdate(guessWord) {
     if (guessWord.join("") === correctWord) {
-      let eliminatedMovies = languages.filter((item) => !item.eliminate);
-
-      if (!eliminatedMovies.length) {
-        showNotification(2, "All directors out, but you saved the day!");
-      } else {
-        showNotification(2, "You win!", "Well done 🏆");
-        setGameStatus(GAME_STATUS.WON);
-      }
+      showNotification(2, "You win!", "Well done 🏆");
+      setGameStatus(GAME_STATUS.WON);
     }
   }
 
