@@ -9,7 +9,7 @@ export const BlankBox = ({
 }) => {
   // Constants
   const initialState = {
-    guessWord: getBlankArrayOfSize(8),
+    guessWord: getBlankArrayOfSize(correctWord.length),
   };
 
   // State
@@ -27,11 +27,10 @@ export const BlankBox = ({
       let lastCorrectChar = correctChars[correctChars.length - 1];
 
       setGuessWord((prev) =>
-        correctWord
-          .split("")
-          .map((val, i) =>
-            val === lastCorrectChar ? lastCorrectChar : prev[i]
-          )
+        correctWord.split("").map((val, i) => {
+          if (val === " ") return " ";
+          return val === lastCorrectChar ? lastCorrectChar : prev[i];
+        })
       );
     },
     [correctChars]
@@ -39,7 +38,7 @@ export const BlankBox = ({
 
   useEffect(
     function () {
-      onGuessWordUpdate(guessWord.join(""));
+      onGuessWordUpdate(guessWord);
     },
     [guessWord]
   );
@@ -54,10 +53,11 @@ export const BlankBox = ({
             blankBox 
             box-style 
             flex-box 
-            ${guessWord[i] ? "" : "blank-space"}
+            ${correctWord[i] === " " ? "space-box" : ""}
+            ${guessWord[i] ? "" : "missing-key"}
           `}
         >
-          {gameOver ? correctWord[i] : val}
+          {correctWord[i] === " " ? " " : gameOver ? correctWord[i] : val}
         </button>
       ))}
     </div>

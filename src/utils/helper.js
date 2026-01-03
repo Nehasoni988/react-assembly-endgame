@@ -15,16 +15,17 @@ export const MAX_ATTEMPTS = 8;
 
 export const getLanguages = () => {
   let languages = [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "React",
-    "TypeScript",
-    "Node.js",
-    "Python",
-    "Ruby",
-    "Assembly",
+    "Shah Rukh Khan",
+    "Aamir Khan",
+    "Salman Khan",
+    "Ranbir Kapoor",
+    "Hrithik Roshan",
+    "Deepika Padukone",
+    "Alia Bhatt",
+    "Sanjay Leela Bhansali",
+    "Box Office Flop 💣",
   ];
+
   let colors = [
     "orange",
     "blue",
@@ -55,19 +56,62 @@ export const getAlphaCharacters = () => [
     .map((num) => String.fromCharCode(num + 65)),
 ];
 
-export const getRandomWord = (min = 0, max = 7) => {
+export const getRandomWord = () => {
   let words = [
-    "REFACTOR",
-    "ABSTRACT",
-    "CALLBACK",
-    "PROMISE",
-    "ARGUMENT",
-    "VARIABLE",
-    "COMPILER",
-    "BALLOONS",
+    "DANGAL",
+    "3 IDIOTS",
+    "PK",
+    "BAJRANGI BHAIJAAN",
+    "SULTAN",
+    "PADMAAVAT",
+    "KABIR SINGH",
+    "CHHICHHORE",
+    "TANHAAJI",
+    "GOLMAAL",
+    "ZINDAGI NA MILEGI DOBARA",
+    "BHOOTNATH",
+    "RAAZ",
+    "OM SHANTI OM",
+    "RA.ONE",
+    "BARFI",
+    "ANDHADHUN",
+    "DRISHYAM",
+    "KEDARNATH",
+    "URI",
+    "GULLY BOY",
+    "STUDENT OF THE YEAR",
+    "RANBHOOMI",
+    "DEEWANGI",
+    "KABHI KHUSHI KABHIE GHAM",
+    "VEER-ZARA",
+    "JODHAA AKBAR",
+    "SANGHARSH",
+    "DILWALE",
+    "BHAAG MILKHA BHAAG",
+    "RAJNI",
+    "RANG DE BASANTI",
+    "LAGAAN",
+    "CHAK DE INDIA",
+    "FAN",
+    "RAAZI",
+    "MISSION MANGAL",
+    "TALAASH",
+    "KHOOBSURAT",
+    "JUNGLE",
+    "BADRINATH KI DULHANIA",
+    "HUMSAFAR",
+    "AIRLIFT",
+    "BARBIE",
+    "HUM APKE HAIN KAUN",
+    "MY NAME IS KHAN",
+    "ISHQ",
+    "BOMBAY",
+    "SAAJAN",
+    "VEERE DI WEDDING",
+    "GABBAR IS BACK",
   ];
 
-  let randomNum = Math.floor(Math.random() * (max - min + 1) + min);
+  let randomNum = Math.floor(Math.random() * words.length);
 
   return words[randomNum];
 };

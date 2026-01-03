@@ -17,9 +17,7 @@
 }
 
 .game_container {
-  margin: auto;
   text-align: center;
-  max-width: 500px;
 }
 
 .alert_container {
@@ -72,6 +70,11 @@
 
 .keyboard_container {
   margin-top: 40px;
+}
+
+.keys-container {
+  max-width: 500px;
+  margin: auto;
 }
 
 /* type 0 */
@@ -127,8 +130,8 @@
   font-weight: bold;
 }
 
-.blank-space {
-  color: tomato;
+.missing-key {
+  color: #EC5E4A;
 }
 
 .success_key {
@@ -137,4 +140,9 @@
 
 .wrong_key {
   background-color: red;
+}
+
+.space-box {
+  background-color: transparent;
+  border: none;
 }

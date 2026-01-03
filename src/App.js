@@ -6,7 +6,6 @@ import {
   getRandomWord,
   ALERT_TYPE,
   GAME_STATUS,
-  MAX_ATTEMPTS,
 } from "./utils/helper";
 import { Language } from "./components/Language";
 import { BlankBox } from "./components/BlankBox";
@@ -16,9 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import { Attempts } from "./components/Attempts";
 
 function App() {
-  /**
-   * State
-   */
+  // Constants
   const initialState = {
     languages: getLanguages(),
     correctWord: getRandomWord(),
@@ -32,6 +29,9 @@ function App() {
     attempts: 0,
   };
 
+  /**
+   * State
+   */
   const [languages, setLanguages] = useState(initialState.languages);
   const [correctWord, setCorrectWord] = useState(initialState.correctWord);
   const [correctChars, setCorrectChars] = useState([
@@ -43,6 +43,7 @@ function App() {
   });
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.PLAYING);
   const [attempts, setAttempts] = useState(initialState.attempts);
+  const MAX_ATTEMPTS = correctWord.replaceAll(" ", "").length;
 
   /**
    * Hooks
@@ -114,9 +115,15 @@ function App() {
   }
 
   function handleGuesseWordUpdate(guessWord) {
-    if (guessWord === correctWord) {
-      showNotification(2, "You win!", "Well done 🏆");
-      setGameStatus(GAME_STATUS.WON);
+    if (guessWord.join("") === correctWord) {
+      let eliminatedMovies = languages.filter((item) => !item.eliminate);
+
+      if (!eliminatedMovies.length) {
+        showNotification(2, "All directors out, but you saved the day!");
+      } else {
+        showNotification(2, "You win!", "Well done 🏆");
+        setGameStatus(GAME_STATUS.WON);
+      }
     }
   }
 
@@ -135,7 +142,7 @@ function App() {
     <div className="App flex-box">
       <div className="game_container">
         {/* Attempts */}
-        <Attempts attempts={attempts}></Attempts>
+        <Attempts attempts={attempts} maxAttempts={MAX_ATTEMPTS}></Attempts>
 
         {/* Header */}
         <Header></Header>
@@ -159,22 +166,24 @@ function App() {
           <BlankBox
             correctWord={correctWord}
             correctChars={correctChars}
-            gameOver={attempts === 8}
+            gameOver={attempts >= MAX_ATTEMPTS}
             onGuessWordUpdate={(data) => handleGuesseWordUpdate(data)}
           ></BlankBox>
         </div>
 
         {/* Keyboard */}
-        <div className="keyboard_container flex-box">
-          {getAlphaCharacters().map((item) => (
-            <Keyboard
-              key={item}
-              keyValue={item}
-              correctChars={correctChars}
-              wrongChars={wrongChars}
-              onClickCb={() => handleKeyPress(item)}
-            ></Keyboard>
-          ))}
+        <div className="keyboard_container">
+          <div className="keys-container flex-box">
+            {getAlphaCharacters().map((item) => (
+              <Keyboard
+                key={item}
+                keyValue={item}
+                correctChars={correctChars}
+                wrongChars={wrongChars}
+                onClickCb={() => handleKeyPress(item)}
+              ></Keyboard>
+            ))}
+          </div>
         </div>
 
         {/* New Game button */}
