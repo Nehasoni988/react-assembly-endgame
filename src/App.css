@@ -12,6 +12,7 @@
   --key-bg: #f4bb44;
   --btn-bg: rgb(47, 204, 228);
   --text-color: white;
+  --footer-height: 50px;
 }
 
 body {
@@ -38,6 +39,8 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  overflow-y: auto;
+  padding-bottom: calc(var(--footer-height) + 20px);
 }
 
 /* Headers */
@@ -48,7 +51,7 @@ body {
 
 /* Containers */
 .game_container,
-.language_container,
+.hint_container,
 .type_container,
 .keyboard_container {
   margin-top: 2.5rem;
@@ -92,6 +95,7 @@ body {
   min-height: 2.5rem;
   font-weight: bold;
   transition: transform 0.1s ease;
+  box-shadow: 3px 3px rgb(194, 192, 192, 0.2);
 }
 
 .keyboard_key:hover {
@@ -237,3 +241,43 @@ body {
     font-size: 1.5rem;
   }
 }
+
+/* Footer */
+.app-footer {
+  margin-top: auto;
+  padding: 12px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #bdbdbd;
+  background: transparent;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--footer-height);
+  background-color: black;
+}
+
+.app-footer p {
+  margin: 0;
+}
+
+.footer-links {
+  margin-top: 6px;
+}
+
+.footer-links a {
+  color: cyan;
+  text-decoration: none;
+  margin: 0 6px;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-links span {
+  color: #666;
+}
+

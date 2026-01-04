@@ -1,23 +1,22 @@
 import "./App.css";
 import { Header } from "./components/Header";
 import {
-  getLanguages,
   getAlphaCharacters,
   getRandomWord,
   ALERT_TYPE,
   GAME_STATUS,
 } from "./utils/helper";
-import { Language } from "./components/Language";
+import { Hint } from "./components/Hint";
 import { BlankBox } from "./components/BlankBox";
 import { Keyboard } from "./components/Keyboard";
 import { Alert } from "./components/Alert";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Attempts } from "./components/Attempts";
+import { Footer } from "./components/Footer";
 
 function App() {
   // Constants
   const initialState = {
-    languages: getLanguages(),
     correctWord: getRandomWord(),
     correctChars: [],
     wrongChars: [],
@@ -32,7 +31,6 @@ function App() {
   /**
    * State
    */
-  const [languages, setLanguages] = useState(initialState.languages);
   const [correctWord, setCorrectWord] = useState(initialState.correctWord);
   const [correctChars, setCorrectChars] = useState([
     ...initialState.correctChars,
@@ -76,32 +74,11 @@ function App() {
     });
   }
 
-  function eliminateLanguage() {
-    let eliminateIndex = languages.findIndex((item) => !item.eliminate);
-    // If language is remaining to be eliminate (except last one)
-    if (eliminateIndex !== -1) {
-      setLanguages((prev) =>
-        prev.map((item, index) => {
-          if (index !== eliminateIndex) return item;
-          // Notify about language elimination
-          showNotification(
-            ALERT_TYPE.WARNING,
-            "Oh no! 😥",
-            `But you can do it 👋`
-          );
-          return { ...item, eliminate: true };
-        })
-      );
-    }
-  }
-
   function handleKeyPress(char) {
     // If game is won or lost, do not allow any key press
     if (gameStatus !== GAME_STATUS.PLAYING) return false;
 
     if (!correctWord.includes(char)) {
-      // eliminate one of the programming language on every wrong guess
-      eliminateLanguage();
       // Set wrong characters
       setWrongChars((prev) => [...prev, char]);
       // Increase the attemps
@@ -123,7 +100,6 @@ function App() {
 
   function startNewGame() {
     // Reset whole state
-    setLanguages(initialState.languages);
     setCorrectWord(getRandomWord());
     setCorrectChars(initialState.correctChars);
     setWrongChars(initialState.wrongChars);
@@ -145,8 +121,8 @@ function App() {
         <Alert notification={notification}></Alert>
 
         {/* Labguages */}
-        <div className="language_container flex-box">
-          <Language correctWord={correctWord}></Language>
+        <div className="hint_container flex-box">
+          <Hint correctWord={correctWord}></Hint>
         </div>
 
         {/* Characters */}
@@ -175,7 +151,9 @@ function App() {
         </div>
 
         {/* New Game button */}
-        {gameStatus !== GAME_STATUS.PLAYING && (
+        {gameStatus == GAME_STATUS.PLAYING ? (
+          <div className="press-key">Press any key</div>
+        ) : (
           <button
             className="type_container new-game-btn"
             onClick={() => startNewGame()}
@@ -183,9 +161,9 @@ function App() {
             New Game
           </button>
         )}
-        {gameStatus === GAME_STATUS.PLAYING && (
-          <div className="press-key">Press any key</div>
-        )}
+
+        {/* Footer */}
+        <Footer></Footer>
       </div>
     </div>
   );

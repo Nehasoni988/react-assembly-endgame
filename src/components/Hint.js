@@ -1,6 +1,6 @@
 import { getHint } from "../utils/helper";
 
-export const Language = ({ correctWord }) => {
+export const Hint = ({ correctWord }) => {
   const hint = getHint(correctWord);
 
   return (

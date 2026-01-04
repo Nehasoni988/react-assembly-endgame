@@ -121,41 +121,6 @@ export const hints = [
   "Vigilante strikes back hard", // GABBAR IS BACK
 ];
 
-export const getLanguages = () => {
-  let languages = [
-    "Shah Rukh Khan",
-    "Aamir Khan",
-    "Salman Khan",
-    "Ranbir Kapoor",
-    "Hrithik Roshan",
-    "Deepika Padukone",
-    "Alia Bhatt",
-    "Sanjay Leela Bhansali",
-    "Box Office Flop 💣",
-  ];
-
-  let colors = [
-    "orange",
-    "blue",
-    "teal",
-    "blueviolet",
-    "brown",
-    "green",
-    "darkmagenta",
-    "red",
-    "deeppink",
-  ];
-
-  return [
-    ...languages.map((val, index) => ({
-      id: index + 1,
-      title: val,
-      background: colors[index],
-      eliminate: false,
-    })),
-  ];
-};
-
 export const getBlankArrayOfSize = (size) => [...Array(size)];
 
 export const getAlphaCharacters = () => [
